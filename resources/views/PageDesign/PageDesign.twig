@@ -1,3 +1,4 @@
+{% spaceless %}
 {% import "Ceres::PageDesign.Macros.IncludeComponents" as Loader %}
 {% import "Ceres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
 {% import "Ceres::PageDesign.Macros.Translations" as Translations %}
@@ -13,15 +14,9 @@
 {% set currencyFormat = config("Ceres.currency.format") %}
 {% set defaultLanguage = webstoreConfig.defaultLanguage %}
 
-<!DOCTYPE html>
-
+{% endspaceless %}<!DOCTYPE html>
 <html lang="{{ lang }}" data-framework="vue" prefix="og: http://ogp.me/ns#" class="icons-loading">
-
 <head>
-    {{ LayoutContainer.show("Ceres::PageDesign.AfterOpeningHeadTag") }}
-
-    {{ get_consent_scripts(ceresConfig.global.blockCookies) }}
-
     {% include getPartial('head') %}
 
     {% block PartialHead %}
@@ -38,6 +33,10 @@
     {% if isItem %}
         {{ LayoutContainer.show("Ceres::SingleItem.Styles") }}
     {% endif %}
+
+    {{ LayoutContainer.show("Ceres::PageDesign.AfterOpeningHeadTag") }}
+
+    {{ get_consent_scripts(ceresConfig.global.blockCookies) }}
 </head>
 
 <body class="{{ bodyClasses | join(' ') }} {% if request.get('openBasketPreview') == 1 %} basket-open{% endif %}">
