@@ -61,10 +61,10 @@
 
 <title>{{ title | trim | raw }}</title>
 {% if description | trim is not empty %}
-    <meta name="description" content="{{ description | trim }}">
+<meta name="description" content="{{ description | trim }}">
 {% endif %}
 {% if keywords | trim is not empty %}
-    <meta name="keywords" content="{{ keywords | trim }}">
+<meta name="keywords" content="{{ keywords | trim }}">
 {% endif %}
 <meta property="og:title" content="{{ title | trim | raw }}"/>
 <meta property="og:type" content="article"/>
