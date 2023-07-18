@@ -9362,6 +9362,492 @@ html.ie .always-visible-search { // stylelint-disable-line selector-no-qualifyin
 
 
 // External plugins overrides
+$theme-color-interval:      8% !default;
+
+$yiq-contrasted-threshold:  150 !default;
+
+$yiq-text-dark:            #212529 !default;
+$yiq-text-light:            #fff !default;
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+) !default;
+
+$spacer: 1rem !default;
+$spacers: () !default;
+
+$spacers: map-merge(
+  (
+    0: 0,
+    1: ($spacer * .25),
+    2: ($spacer * .5),
+    3: $spacer,
+    4: ($spacer * 1.5),
+    5: ($spacer * 3)
+  ),
+  $spacers
+);
+
+$primary: #907946;
+$background: #fff;
+
+$availability1: #02c721;
+$availability2: #02c721;
+$availability3: #ffd81e;
+$availability4: #ffd81e;
+$availability5: #ee0311;
+$availability6: #555;
+$availability7: #555;
+$availability8: #555;
+$availability9: #555;
+$availability10: #555;
+
+@function color-yiq($color, $dark: $yiq-text-dark, $light: $yiq-text-light) {
+    $r: red($color);
+    $g: green($color);
+    $b: blue($color);
+  
+    $yiq: (($r * 299) + ($g * 587) + ($b * 114)) / 1000;
+  
+    @return if($yiq >= $yiq-contrasted-threshold, $dark, $light);
+  }
+  
+  
+  // Breakpoint viewport sizes and media queries.
+  //
+  // Breakpoints are defined as a map of (name: minimum width), order from small to large:
+  //
+  //    (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px)
+  //
+  // The map defined in the `$grid-breakpoints` global variable is used as the `$breakpoints` argument by default.
+  
+  // Name of the next breakpoint, or null for the last breakpoint.
+  //
+  //    >> breakpoint-next(sm)
+  //    md
+  //    >> breakpoint-next(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
+  //    md
+  //    >> breakpoint-next(sm, $breakpoint-names: (xs sm md lg xl))
+  //    md
+  @function breakpoint-next($name, $breakpoints: $grid-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
+    $n: index($breakpoint-names, $name);
+    @if not $n {
+      @error "breakpoint `#{$name}` not found in `#{$breakpoints}`";
+    }
+    @return if($n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
+  }
+  
+  // Minimum breakpoint width. Null for the smallest (first) breakpoint.
+  //
+  //    >> breakpoint-min(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
+  //    576px
+  @function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
+    $min: map-get($breakpoints, $name);
+    @return if($min != 0, $min, null);
+  }
+  
+  // Maximum breakpoint width. Null for the largest (last) breakpoint.
+  // The maximum value is calculated as the minimum of the next one less 0.02px
+  // to work around the limitations of `min-` and `max-` prefixes and viewports with fractional widths.
+  // See https://www.w3.org/TR/mediaqueries-4/#mq-min-max
+  // Uses 0.02px rather than 0.01px to work around a current rounding bug in Safari.
+  // See https://bugs.webkit.org/show_bug.cgi?id=178261
+  //
+  //    >> breakpoint-max(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
+  //    767.98px
+  @function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
+    $next: breakpoint-next($name, $breakpoints);
+    @return if($next, breakpoint-min($next, $breakpoints) - .02, null);
+  }
+  
+  // Returns a blank string if smallest breakpoint, otherwise returns the name with a dash in front.
+  // Useful for making responsive utilities.
+  //
+  //    >> breakpoint-infix(xs, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
+  //    ""  (Returns a blank string)
+  //    >> breakpoint-infix(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
+  //    "-sm"
+  @function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
+    @return if(breakpoint-min($name, $breakpoints) == null, "", "-#{$name}");
+  }
+  
+  // Media of at least the minimum breakpoint width. No query for the smallest breakpoint.
+  // Makes the @content apply to the given breakpoint and wider.
+  @mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
+    $min: breakpoint-min($name, $breakpoints);
+    @if $min {
+      @media (min-width: $min) {
+        @content;
+      }
+    } @else {
+      @content;
+    }
+  }
+  
+  // Media of at most the maximum breakpoint width. No query for the largest breakpoint.
+  // Makes the @content apply to the given breakpoint and narrower.
+  @mixin media-breakpoint-down($name, $breakpoints: $grid-breakpoints) {
+    $max: breakpoint-max($name, $breakpoints);
+    @if $max {
+      @media (max-width: $max) {
+        @content;
+      }
+    } @else {
+      @content;
+    }
+  }
+  
+  // Media that spans multiple breakpoint widths.
+  // Makes the @content apply between the min and max breakpoints
+  @mixin media-breakpoint-between($lower, $upper, $breakpoints: $grid-breakpoints) {
+    $min: breakpoint-min($lower, $breakpoints);
+    $max: breakpoint-max($upper, $breakpoints);
+  
+    @if $min != null and $max != null {
+      @media (min-width: $min) and (max-width: $max) {
+        @content;
+      }
+    } @else if $max == null {
+      @include media-breakpoint-up($lower, $breakpoints) {
+        @content;
+      }
+    } @else if $min == null {
+      @include media-breakpoint-down($upper, $breakpoints) {
+        @content;
+      }
+    }
+  }
+  
+  // Media between the breakpoint's minimum and maximum widths.
+  // No minimum for the smallest breakpoint, and no maximum for the largest one.
+  // Makes the @content apply only to the given breakpoint, not viewports any wider or narrower.
+  @mixin media-breakpoint-only($name, $breakpoints: $grid-breakpoints) {
+    $min: breakpoint-min($name, $breakpoints);
+    $max: breakpoint-max($name, $breakpoints);
+  
+    @if $min != null and $max != null {
+      @media (min-width: $min) and (max-width: $max) {
+        @content;
+      }
+    } @else if $max == null {
+      @include media-breakpoint-up($name, $breakpoints) {
+        @content;
+      }
+    } @else if $min == null {
+      @include media-breakpoint-down($name, $breakpoints) {
+        @content;
+      }
+    }
+  }
+
+body{
+  background-color: #fff;
+}
+
+.top-bar{
+  background: #000;
+}
+
+.logo-bar{
+  background: #000;
+}
+
+.navbar{
+  background: #000;
+}
+
+#page-body{
+  > .container-max{
+    background: #fff;
+  }
+}
+
+header{
+  .navbar-toggler{
+    color: #fff;
+  }
+  .main-navbar-collapsable{
+    @include media-breakpoint-up(lg){
+      -ms-flex-item-align: end;
+          align-self: flex-end;
+    }
+    .mainmenu{
+      >li{
+        >a{
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  .navbar-brand{
+    img{
+      max-height: 4rem;
+    }
+  }
+  @include media-breakpoint-up(lg){
+    .navbar-brand{
+      img{
+        max-height: 7rem;
+      }
+    }
+  }
+}
+
+.page-category{
+  #page-body{
+    > .container-max{
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+}
+
+.footer{
+  background: #000;
+  color: #fff;
+
+  >.container-max{
+    margin-top: 3rem;
+    padding-top: 2rem;
+    max-width: 1200px;
+  }
+
+  .widget-legal-information{
+    a{
+      color: #fff;
+
+      &:hover{
+        color: #fff;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .widget-link-list,.widget-list{
+    .widget-inner{
+      a{
+        color:#fff;
+      }
+    }
+  }
+}
+
+.widget-navigation-tree{
+  .category-title{
+    background: transparent;
+    font-size: 1.33rem;
+    font-weight: 600;
+    color: $primary;
+  }
+
+  .nav-item{
+    .nav-link{
+      padding: .25rem 1.5rem;
+
+      &:hover{
+        color: $primary;
+        background: transparent;
+      }
+    }
+    .expand-nav{
+      padding: .25rem 0;
+    }
+
+    &.active{
+      > .nav-link{
+        background: transparent;
+        color: $primary;
+      }
+    }
+  }
+}
+
+h1, .h1{
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+h2, .h2{
+  font-size: 1.33rem;
+  font-weight: 600;
+}
+h3, .h3{
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+h4, .h4{
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+h5, .h5{
+  font-size: 1.1rem;
+}
+h6, .h6{
+  font-weight: 600;
+}
+
+.breadcrumbs{
+  background: transparent;
+
+  .breadcrumb{
+    background: transparent;
+  }
+}
+
+.widget-text{
+  img{
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.cmp-product-thumb{
+
+  del{
+    &.crossprice{
+      display: none;
+    }
+  }
+
+  .availability{
+    text-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+
+    &:before{
+      content: " ";
+      background: #000;
+      border-radius: 50%;
+      width: 15px;
+      height: 15px;
+      line-height: 15px;
+      margin-right: .5rem;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-flex: 0;
+          -ms-flex: 0 0 auto;
+              flex: 0 0 auto;
+    }
+
+    &.availability-1 {
+      color: #555;
+      background-color: #fff;
+
+      &:before{
+        background-color: $availability1;
+      }
+    }
+    &.availability-2 {
+      color: #555;
+      background-color: #fff;
+
+      &:before{
+        background-color: $availability2;
+      }
+    }
+    &.availability-3 {
+      color: #555;
+      background-color: #fff;
+
+      &:before{
+        background-color: $availability3;
+      }
+    }
+    &.availability-4 {
+      color: #555;
+      background-color: #fff;
+
+      &:before{
+        background-color: $availability4;
+      }
+    }
+    &.availability-5 {
+      color: #555;
+      background-color: #fff;
+
+      &:before{
+        background-color: $availability5;
+      }
+    }
+    &.availability-6 {
+      color: #555;
+      background-color: #fff;
+
+      &:before{
+        background-color: $availability6;
+      }
+    }
+    &.availability-7 {
+      color: #555;
+      background-color: #fff;
+
+      &:before{
+        background-color: $availability7;
+      }
+    }
+    &.availability-8 {
+      color: #555;
+      background-color: #fff;
+
+      &:before{
+        background-color: $availability8;
+      }
+    }
+    &.availability-9 {
+      color: #555;
+      background-color: #fff;
+
+      &:before{
+        background-color: $availability9;
+      }
+    }
+    &.availability-10 {
+      color: #555;
+      background-color: #fff;
+
+      &:before{
+        background-color: $availability10;
+      }
+    }
+  }
+  .prices{
+    text-align: center;
+    -webkit-box-orient: vertical!important;
+    -webkit-box-direction: normal!important;
+        -ms-flex-direction: column!important;
+            flex-direction: column!important;
+  }
+
+  .thumb-title{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 1.2rem;
+    margin-bottom: 0rem;
+  }
+}
+
+.page-singleitem{
+  .crossprice{
+    display: none;
+  }
+  .base-price{
+    display: none;
+  }
+}
+
 /**
 * Owl Carousel v2.2.0
 * Copyright 2013-2016 David Deutsch
@@ -14689,7 +15175,6 @@ header .widget {
         }
     }
 }
-
 
 
 
