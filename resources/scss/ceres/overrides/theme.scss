@@ -1,0 +1,216 @@
+body{
+    background-color:#fff
+}
+.top-bar{
+    background:#000
+}
+.logo-bar{
+    background:#000
+}
+.navbar{
+    background:#000
+}
+#page-body>.container-max{
+    background:#fff
+}
+header .navbar-toggler{
+    color:#fff
+}
+@media (min-width: 992px){
+    header .main-navbar-collapsable{
+        align-self:flex-end
+    }
+}
+header .main-navbar-collapsable .mainmenu>li>a{
+    color:#fff
+}
+header .navbar-brand img{
+    max-height:4rem
+}
+@media (min-width: 992px){
+    header .navbar-brand img{
+        max-height:7rem
+    }
+}
+.page-category #page-body>.container-max{
+    padding-top:0;
+    padding-bottom:0
+}
+.footer{
+    background:#000;
+    color:#fff
+}
+.footer>.container-max{
+    margin-top:3rem;
+    padding-top:2rem;
+    max-width:1200px
+}
+.footer .widget-legal-information a{
+    color:#fff
+}
+.footer .widget-legal-information a:hover{
+    color:#fff;
+    text-decoration:underline
+}
+.footer .widget-link-list .widget-inner a,.footer .widget-list .widget-inner a{
+    color:#fff
+}
+.widget-navigation-tree .category-title{
+    background:transparent;
+    font-size:1.33rem;
+    font-weight:600;
+    color:#907946
+}
+.widget-navigation-tree .nav-item .nav-link{
+    padding:.25rem 1.5rem
+}
+.widget-navigation-tree .nav-item .nav-link:hover{
+    color:#907946;
+    background:transparent
+}
+.widget-navigation-tree .nav-item .expand-nav{
+    padding:.25rem 0
+}
+.widget-navigation-tree .nav-item.active>.nav-link{
+    background:transparent;
+    color:#907946
+}
+h1,.h1{
+    font-size:1.5rem;
+    font-weight:600
+}
+h2,.h2{
+    font-size:1.33rem;
+    font-weight:600
+}
+h3,.h3{
+    font-size:1.2rem;
+    font-weight:600
+}
+h4,.h4{
+    font-size:1.1rem;
+    font-weight:600
+}
+h5,.h5{
+    font-size:1.1rem
+}
+h6,.h6{
+    font-weight:600
+}
+.breadcrumbs{
+    background:transparent
+}
+.breadcrumbs .breadcrumb{
+    background:transparent
+}
+.widget-text img{
+    max-width:100%;
+    height:auto
+}
+.cmp-product-thumb del.crossprice{
+    display:none
+}
+.cmp-product-thumb .availability{
+    text-align:center;
+    display:flex;
+    justify-content:center;
+    align-items:center
+}
+.cmp-product-thumb .availability:before{
+    content:" ";
+    background:#000;
+    border-radius:50%;
+    width:15px;
+    height:15px;
+    line-height:15px;
+    margin-right:.5rem;
+    display:flex;
+    flex:0 0 auto
+}
+.cmp-product-thumb .availability.availability-1{
+    color:#555;
+    background-color:#fff
+}
+.cmp-product-thumb .availability.availability-1:before{
+    background-color:#02c721
+}
+.cmp-product-thumb .availability.availability-2{
+    color:#555;
+    background-color:#fff
+}
+.cmp-product-thumb .availability.availability-2:before{
+    background-color:#02c721
+}
+.cmp-product-thumb .availability.availability-3{
+    color:#555;
+    background-color:#fff
+}
+.cmp-product-thumb .availability.availability-3:before{
+    background-color:#ffd81e
+}
+.cmp-product-thumb .availability.availability-4{
+    color:#555;
+    background-color:#fff
+}
+.cmp-product-thumb .availability.availability-4:before{
+    background-color:#ffd81e
+}
+.cmp-product-thumb .availability.availability-5{
+    color:#555;
+    background-color:#fff
+}
+.cmp-product-thumb .availability.availability-5:before{
+    background-color:#ee0311
+}
+.cmp-product-thumb .availability.availability-6{
+    color:#555;
+    background-color:#fff
+}
+.cmp-product-thumb .availability.availability-6:before{
+    background-color:#555
+}
+.cmp-product-thumb .availability.availability-7{
+    color:#555;
+    background-color:#fff
+}
+.cmp-product-thumb .availability.availability-7:before{
+    background-color:#555
+}
+.cmp-product-thumb .availability.availability-8{
+    color:#555;
+    background-color:#fff
+}
+.cmp-product-thumb .availability.availability-8:before{
+    background-color:#555
+}
+.cmp-product-thumb .availability.availability-9{
+    color:#555;
+    background-color:#fff
+}
+.cmp-product-thumb .availability.availability-9:before{
+    background-color:#555
+}
+.cmp-product-thumb .availability.availability-10{
+    color:#555;
+    background-color:#fff
+}
+.cmp-product-thumb .availability.availability-10:before{
+    background-color:#555
+}
+.cmp-product-thumb .prices{
+    text-align:center;
+    flex-direction:column !important
+}
+.cmp-product-thumb .thumb-title{
+    text-overflow:ellipsis;
+    overflow:hidden;
+    white-space:nowrap;
+    font-size:1.2rem;
+    margin-bottom:0rem
+}
+.page-singleitem .crossprice{
+    display:none
+}
+.page-singleitem .base-price{
+    display:none
+}
