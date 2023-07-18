@@ -327,8 +327,6 @@
     <input type="hidden" id="csrf-token" value="{{ csrf_token() }}">
 {% endif %}
 
-{% block PartialLast %}
-    {% embed getPartial('page-metadata2') %}{% endembed %}
-{% endblock %}
+{% block PartialLast %}{% endblock %}
 </body>
 </html>
