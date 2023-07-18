@@ -17,15 +17,17 @@
 {% endspaceless %}<!DOCTYPE html>
 <html lang="{{ lang }}" data-framework="vue" prefix="og: http://ogp.me/ns#" class="icons-loading">
 <head>
-    {% include getPartial('head') %}
-
-    {% block PartialHead %}
-        {% embed getPartial('page-metadata') %}{% endembed %}
-    {% endblock %}
-
-    {% for styleTemplate in get_additional_styles() %}
-        {% include styleTemplate.path ignore missing with styleTemplate.params %}
-    {% endfor %}
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+{% block PartialHead %}
+{% embed getPartial('page-metadata') %}{% endembed %}
+{% endblock %}
+{% include getPartial('head') %}
+{% for styleTemplate in get_additional_styles() %}
+{% include styleTemplate.path ignore missing with styleTemplate.params %}
+{% endfor %}
 
     {% if assetName == 'ceres-checkout' %}
         {{ LayoutContainer.show("Ceres::Checkout.Styles") }}
