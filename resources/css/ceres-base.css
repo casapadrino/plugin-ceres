@@ -11121,27 +11121,27 @@ html.ie .always-visible-search {
 }
 
 body {
-  background-color: #fff;
+  background-color: #fff !important;
 }
 
 .top-bar {
-  background: #000;
+  background: #000 !important;
 }
 
 .logo-bar {
-  background: #000;
+  background: #000 !important;
 }
 
 .navbar {
-  background: #000;
+  background: #000 !important;
 }
 
 #page-body > .container-max {
-  background: #fff;
+  background: #fff !important;
 }
 
 header .navbar-toggler {
-  color: #fff;
+  color: #fff !important;
 }
 @media (min-width: 992px) {
   header .main-navbar-collapsable {
@@ -11149,7 +11149,7 @@ header .navbar-toggler {
   }
 }
 header .main-navbar-collapsable .mainmenu > li > a {
-  color: #fff;
+  color: #fff !important;
 }
 header .navbar-brand img {
   max-height: 4rem;
@@ -11166,8 +11166,8 @@ header .navbar-brand img {
 }
 
 .footer {
-  background: #000;
-  color: #fff;
+  background: #000 !important;
+  color: #fff !important;
 }
 .footer > .container-max {
   margin-top: 3rem;
@@ -11175,18 +11175,18 @@ header .navbar-brand img {
   max-width: 1200px;
 }
 .footer .widget-legal-information a {
-  color: #fff;
+  color: #fff !important;
 }
 .footer .widget-legal-information a:hover {
-  color: #fff;
+  color: #fff !important;
   text-decoration: underline;
 }
 .footer .widget-link-list .widget-inner a, .footer .widget-list .widget-inner a {
-  color: #fff;
+  color: #fff !important;
 }
 
 .widget-navigation-tree .category-title {
-  background: transparent;
+  background: transparent !important;
   font-size: 1.33rem;
   font-weight: 600;
   color: #907946;
@@ -11196,13 +11196,13 @@ header .navbar-brand img {
 }
 .widget-navigation-tree .nav-item .nav-link:hover {
   color: #907946;
-  background: transparent;
+  background: transparent !important;
 }
 .widget-navigation-tree .nav-item .expand-nav {
   padding: 0.25rem 0;
 }
 .widget-navigation-tree .nav-item.active > .nav-link {
-  background: transparent;
+  background: transparent !important;
   color: #907946;
 }
 
@@ -11235,10 +11235,10 @@ h6, .h6 {
 }
 
 .breadcrumbs {
-  background: transparent;
+  background: transparent !important;
 }
 .breadcrumbs .breadcrumb {
-  background: transparent;
+  background: transparent !important;
 }
 
 .widget-text img {
@@ -11257,7 +11257,7 @@ h6, .h6 {
 }
 .cmp-product-thumb .availability:before {
   content: " ";
-  background: #000;
+  background: #000 !important;
   border-radius: 50%;
   width: 15px;
   height: 15px;
@@ -11268,70 +11268,70 @@ h6, .h6 {
 }
 .cmp-product-thumb .availability.availability-1 {
   color: #555;
-  background-color: #fff;
+  background-color: #fff !important;
 }
 .cmp-product-thumb .availability.availability-1:before {
   background-color: #02c721;
 }
 .cmp-product-thumb .availability.availability-2 {
   color: #555;
-  background-color: #fff;
+  background-color: #fff !important;
 }
 .cmp-product-thumb .availability.availability-2:before {
   background-color: #02c721;
 }
 .cmp-product-thumb .availability.availability-3 {
   color: #555;
-  background-color: #fff;
+  background-color: #fff !important;
 }
 .cmp-product-thumb .availability.availability-3:before {
   background-color: #ffd81e;
 }
 .cmp-product-thumb .availability.availability-4 {
   color: #555;
-  background-color: #fff;
+  background-color: #fff !important;
 }
 .cmp-product-thumb .availability.availability-4:before {
   background-color: #ffd81e;
 }
 .cmp-product-thumb .availability.availability-5 {
   color: #555;
-  background-color: #fff;
+  background-color: #fff !important;
 }
 .cmp-product-thumb .availability.availability-5:before {
   background-color: #ee0311;
 }
 .cmp-product-thumb .availability.availability-6 {
   color: #555;
-  background-color: #fff;
+  background-color: #fff !important;
 }
 .cmp-product-thumb .availability.availability-6:before {
   background-color: #555;
 }
 .cmp-product-thumb .availability.availability-7 {
   color: #555;
-  background-color: #fff;
+  background-color: #fff !important;
 }
 .cmp-product-thumb .availability.availability-7:before {
   background-color: #555;
 }
 .cmp-product-thumb .availability.availability-8 {
   color: #555;
-  background-color: #fff;
+  background-color: #fff !important;
 }
 .cmp-product-thumb .availability.availability-8:before {
   background-color: #555;
 }
 .cmp-product-thumb .availability.availability-9 {
   color: #555;
-  background-color: #fff;
+  background-color: #fff !important;
 }
 .cmp-product-thumb .availability.availability-9:before {
   background-color: #555;
 }
 .cmp-product-thumb .availability.availability-10 {
   color: #555;
-  background-color: #fff;
+  background-color: #fff !important;
 }
 .cmp-product-thumb .availability.availability-10:before {
   background-color: #555;

@@ -9545,30 +9545,30 @@ $availability10: #555;
   }
 
 body{
-  background-color: #fff;
+  background-color: #fff !important;
 }
 
 .top-bar{
-  background: #000;
+  background: #000 !important;
 }
 
 .logo-bar{
-  background: #000;
+  background: #000 !important;
 }
 
 .navbar{
-  background: #000;
+  background: #000 !important;
 }
 
 #page-body{
   > .container-max{
-    background: #fff;
+    background: #fff !important;
   }
 }
 
 header{
   .navbar-toggler{
-    color: #fff;
+    color: #fff !important;
   }
   .main-navbar-collapsable{
     @include media-breakpoint-up(lg){
@@ -9578,7 +9578,7 @@ header{
     .mainmenu{
       >li{
         >a{
-          color: #fff;
+          color: #fff !important;
         }
       }
     }
@@ -9608,8 +9608,8 @@ header{
 }
 
 .footer{
-  background: #000;
-  color: #fff;
+  background: #000 !important;
+  color: #fff !important;
 
   >.container-max{
     margin-top: 3rem;
@@ -9619,10 +9619,10 @@ header{
 
   .widget-legal-information{
     a{
-      color: #fff;
+      color: #fff !important;
 
       &:hover{
-        color: #fff;
+        color: #fff !important;
         text-decoration: underline;
       }
     }
@@ -9631,7 +9631,7 @@ header{
   .widget-link-list,.widget-list{
     .widget-inner{
       a{
-        color:#fff;
+        color:#fff !important;
       }
     }
   }
@@ -9639,7 +9639,7 @@ header{
 
 .widget-navigation-tree{
   .category-title{
-    background: transparent;
+    background: transparent !important;
     font-size: 1.33rem;
     font-weight: 600;
     color: $primary;
@@ -9651,7 +9651,7 @@ header{
 
       &:hover{
         color: $primary;
-        background: transparent;
+        background: transparent !important;
       }
     }
     .expand-nav{
@@ -9660,7 +9660,7 @@ header{
 
     &.active{
       > .nav-link{
-        background: transparent;
+        background: transparent !important;
         color: $primary;
       }
     }
@@ -9691,10 +9691,10 @@ h6, .h6{
 }
 
 .breadcrumbs{
-  background: transparent;
+  background: transparent !important;
 
   .breadcrumb{
-    background: transparent;
+    background: transparent !important;
   }
 }
 
@@ -9727,7 +9727,7 @@ h6, .h6{
 
     &:before{
       content: " ";
-      background: #000;
+      background: #000 !important;
       border-radius: 50%;
       width: 15px;
       height: 15px;
@@ -9743,7 +9743,7 @@ h6, .h6{
 
     &.availability-1 {
       color: #555;
-      background-color: #fff;
+      background-color: #fff !important;
 
       &:before{
         background-color: $availability1;
@@ -9751,7 +9751,7 @@ h6, .h6{
     }
     &.availability-2 {
       color: #555;
-      background-color: #fff;
+      background-color: #fff !important;
 
       &:before{
         background-color: $availability2;
@@ -9759,7 +9759,7 @@ h6, .h6{
     }
     &.availability-3 {
       color: #555;
-      background-color: #fff;
+      background-color: #fff !important;
 
       &:before{
         background-color: $availability3;
@@ -9767,7 +9767,7 @@ h6, .h6{
     }
     &.availability-4 {
       color: #555;
-      background-color: #fff;
+      background-color: #fff !important;
 
       &:before{
         background-color: $availability4;
@@ -9775,7 +9775,7 @@ h6, .h6{
     }
     &.availability-5 {
       color: #555;
-      background-color: #fff;
+      background-color: #fff !important;
 
       &:before{
         background-color: $availability5;
@@ -9783,7 +9783,7 @@ h6, .h6{
     }
     &.availability-6 {
       color: #555;
-      background-color: #fff;
+      background-color: #fff !important;
 
       &:before{
         background-color: $availability6;
@@ -9791,7 +9791,7 @@ h6, .h6{
     }
     &.availability-7 {
       color: #555;
-      background-color: #fff;
+      background-color: #fff !important;
 
       &:before{
         background-color: $availability7;
@@ -9799,7 +9799,7 @@ h6, .h6{
     }
     &.availability-8 {
       color: #555;
-      background-color: #fff;
+      background-color: #fff !important;
 
       &:before{
         background-color: $availability8;
@@ -9807,7 +9807,7 @@ h6, .h6{
     }
     &.availability-9 {
       color: #555;
-      background-color: #fff;
+      background-color: #fff !important;
 
       &:before{
         background-color: $availability9;
@@ -9815,7 +9815,7 @@ h6, .h6{
     }
     &.availability-10 {
       color: #555;
-      background-color: #fff;
+      background-color: #fff !important;
 
       &:before{
         background-color: $availability10;
