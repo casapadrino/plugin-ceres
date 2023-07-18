@@ -59,15 +59,17 @@
 {% endif %}
 
 {% endspaceless %}
-<meta name="robots" content="{% if forceNoIndex %}NOINDEX{% else %}{{ robots }}{% endif %}">
 
 <title>{{ title | trim | raw }}</title>
 {% if description | trim is not empty %}
 <meta name="description" content="{{ description | trim }}">
 {% endif %}
+<meta name="format-detection" content="telephone=no">
 {% if keywords | trim is not empty %}
 <meta name="keywords" content="{{ keywords | trim }}">
 {% endif %}
+<meta name="robots" content="{% if forceNoIndex %}NOINDEX{% else %}{{ robots }}{% endif %}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta property="og:title" content="{{ title | trim | raw }}"/>
 <meta property="og:type" content="article"/>
 <meta property="og:url" content="{{ url | trim }}"/>
