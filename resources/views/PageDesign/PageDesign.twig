@@ -37,6 +37,7 @@
 
     {{ LayoutContainer.show("Ceres::PageDesign.AfterOpeningHeadTag") }}
 
+{% include getPartial('last') %}
 </head>
 
 <body class="{{ bodyClasses | join(' ') }} {% if request.get('openBasketPreview') == 1 %} basket-open{% endif %}">
@@ -240,8 +241,6 @@
 </script>
 
 {{ get_consent_scripts(ceresConfig.global.blockCookies) }}
-
-{% include getPartial('last') %}
 
 {{ Loader.include_components() }}
 
