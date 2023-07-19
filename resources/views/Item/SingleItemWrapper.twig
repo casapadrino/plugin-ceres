@@ -73,8 +73,6 @@
 
 {% endblock %}
 
-{% block PartialLast %}
-{% embed getPartial('page-metadata2') %}
 {% block schemaOrg %}
             {
                 "@context"      : "http://schema.org/",
@@ -174,7 +172,4 @@
                     "value"         : "{{ itemData.variation.weightG }}"
                 }
             }
-        {% endblock %}
-
-    {% endembed %}
 {% endblock %}
