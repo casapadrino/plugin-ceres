@@ -6,17 +6,10 @@
     {% set details = category.details[0] %}
 {% endif %}
 
-{% set robots = '' %}
 {% set description = '' %}
 {% set keywords = '' %}
 {% set image = '' %}
 {% set title = '' %}
-
-{% if block('robots') is defined %}
-    {% set robots = block('robots') | default('NOINDEX, NOFOLLOW') %}
-{% elseif details is not null %}
-    {% set robots = services.SEO.getRobotsInformation() %}
-{% endif %}
 
 {% if block('description') is defined %}
     {% set description = block('description') %}
@@ -84,12 +77,10 @@
 <meta name="keywords" content="{{ keywords | trim }}">
 {% endif %}
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta property="og:title" content="{{ title | trim | raw }}"/>
-<meta property="og:type" content="article"/>
-<meta property="og:url" content="{{ url | trim }}"/>
-<meta property="og:image" content="{{ image | trim }}"/>
-
+<meta name="apple-mobile-web-app-title" content="MySchirm">
 <link rel="icon" type="img/ico" href="{{ webstoreConfig.faviconPath | default(ceresConfig.global.favicon) | default(defaultFavicon) }}">
+<link rel="apple-touch-icon" href="https://cdn02.plentymarkets.com/vji7b8phcm0f/frontend/MySchirm/my-schirm-logo7.jpg">
+<link rel="apple-touch-icon" sizes="180x180" href="https://cdn02.plentymarkets.com/vji7b8phcm0f/frontend/MySchirm/my-schirm-logo7.jpg">
 {% if canonicalUrl is not null %}
 <link rel="canonical" href="{{ canonicalUrl  ~ services.url.getCanonicalQueryString() }}">
 {% endif %}
@@ -98,45 +89,11 @@
 <link rel="alternate" hreflang="{{language}}" href="{{url}}"/>
 {% endfor %}
 {% endif %}
-<style data-font="Custom-Font">
-.icons-loading .fa { visibility: hidden !important; }
-    {% if customFont.regular %}
-    {{ add_asset(customFont.regular, 'font', 'preload', {'crossorigin': true}) }}
-    @font-face {
-        font-family: "Custom-Font";
-        src: url("{{ customFont.regular }}");
-        font-display: optional;
-    }
-    {% endif %}
-    {% if customFont.bold %}
-    {{ add_asset(customFont.bold, 'font', 'preload', {'crossorigin': true}) }}
-    @font-face {
-        font-family: "Custom-Font";
-        src: url("{{ customFont.bold }}");
-        font-display: optional;
-        font-weight: bold;
-    }
-    {% endif %}
-    {% if customFont.italic %}
-    {{ add_asset(customFont.italic, 'font', 'preload', {'crossorigin': true}) }}
-    @font-face {
-        font-family: "Custom-Font";
-        src: url("{{ customFont.italic }}");
-        font-display: optional;
-        font-style: italic;
-    }
-    {% endif %}
-    {% if customFont.boldItalic %}
-    {{ add_asset(customFont.boldItalic, 'font', 'preload', {'crossorigin': true}) }}
-    @font-face {
-        font-family: "Custom-Font";
-        src: url("{{ customFont.boldItalic }}");
-        font-display: optional;
-        font-weight: bold;
-        font-style: italic;
-    }
-    {% endif %}
-</style>
+<meta property="og:title" content="{{ title | trim | raw }}"/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="{{ url | trim }}"/>
+<meta property="og:image" content="{{ image | trim }}"/>
+<style data-font="Custom-Font">.icons-loading .fa { visibility: hidden !important; }</style>
 <link rel="preload" href="{{ iconCSS }}" as="style" onload="this.onload=null;this.rel='stylesheet';">
 <noscript><link rel="stylesheet" href="{{ iconCSS }}"></noscript>
 {% if LayoutContainer.show("Ceres::Template.StyleOverwrite") | trim is empty %}
