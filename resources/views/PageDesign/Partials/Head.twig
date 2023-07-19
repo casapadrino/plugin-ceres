@@ -1,22 +1,5 @@
 {% import "Ceres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
 {% spaceless %}
-{% set defaultFavicon = '/tpl/favicon_' ~ webstoreConfig.webstoreId ~ '.ico' %}
-{% set canonicalUrl = services.url.getCanonicalURL() %}
-{% set languageUrls = services.url.getLanguageURLs() %}
-    {% set customFont =
-        {
-            regular: config('Ceres.custom-font-regular'),
-            bold: config('Ceres.custom-font-bold'),
-            italic: config('Ceres.custom-font-italic'),
-            boldItalic: config('Ceres.custom-font-bold-italic')
-        }
-    %}
-{% set iconCSS = plugin_path("Ceres") ~ "/css/ceres-icons.css" %}
-{% set defaultCSS = plugin_path("Ceres") ~ "/css/" ~ assetName ~ ".css?v=" ~ buildHash %}
-{% set defaultSCSS = plugin_path("Ceres") ~ "/css/" ~ assetName ~ ".scss?v=" ~ buildHash %}
-{% endspaceless %}
-
-{% spaceless %}
 
 {% set details = null %}
 {% if category is defined and category is not null %}
@@ -76,6 +59,20 @@
     {% set image = plugin_path('Ceres') ~ "/" ~ image %}
 {% endif %}
 
+{% set defaultFavicon = '/tpl/favicon_' ~ webstoreConfig.webstoreId ~ '.ico' %}
+{% set canonicalUrl = services.url.getCanonicalURL() %}
+{% set languageUrls = services.url.getLanguageURLs() %}
+    {% set customFont =
+        {
+            regular: config('Ceres.custom-font-regular'),
+            bold: config('Ceres.custom-font-bold'),
+            italic: config('Ceres.custom-font-italic'),
+            boldItalic: config('Ceres.custom-font-bold-italic')
+        }
+    %}
+{% set iconCSS = plugin_path("Ceres") ~ "/css/ceres-icons.css" %}
+{% set defaultCSS = plugin_path("Ceres") ~ "/css/" ~ assetName ~ ".css?v=" ~ buildHash %}
+{% set defaultSCSS = plugin_path("Ceres") ~ "/css/" ~ assetName ~ ".scss?v=" ~ buildHash %}
 {% endspaceless %}
 
 <title>{{ title | trim | raw }}</title>
