@@ -244,8 +244,6 @@
 
 {{ Loader.include_components() }}
 
-{{ LayoutContainer.show("Ceres::Script.Loader") }}
-
 {{ Translations.add( "Ceres", "Template" ) }}
 
 {{ get_json_data() }}
@@ -263,13 +261,14 @@
 <script src="{{ plugin_path('Ceres') }}/js/dist/{{ assetName }}{{ minSuffix }}.js?v={{ buildHash }}"></script>
 <!-- /SSR -->
 
+{{ LayoutContainer.show("Ceres::Script.Loader") }}
+
 {% for scriptTemplate in get_additional_scripts() %}
     {% include scriptTemplate.path ignore missing with scriptTemplate.params %}
 {% endfor %}
 
-{{ LayoutContainer.show("Ceres::Script.AfterScriptsLoaded") }}
-
 {% if assetName == 'ceres-checkout' %}
+    {{ LayoutContainer.show("Ceres::Script.AfterScriptsLoaded") }}
     {{ LayoutContainer.show("Ceres::Checkout.AfterScriptsLoaded") }}
 {% endif %}
 
