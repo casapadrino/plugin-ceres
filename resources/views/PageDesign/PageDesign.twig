@@ -275,6 +275,8 @@
     {{ LayoutContainer.show("Ceres::SingleItem.AfterScriptsLoaded") }}
 {% endif %}
 
+{% include getPartial('last') %}
+
 <!-- SSR:on() -->
 <script>
     window.createApp("#vue-app");
@@ -319,6 +321,5 @@
 
 {{ get_filtered_tags() }}
 
-{% include getPartial('last') %}
 </body>
 </html>
