@@ -73,7 +73,7 @@
 
 {% endblock %}
 
-{% embed getPartial('last') %}
+{% block PartialLast %}
 {% block schemaOrg %}
             {
                 "@context"      : "http://schema.org/",
@@ -174,4 +174,4 @@
                 }
             }
 {% endblock %}
-{% endembed %}
+{% endblock %}
