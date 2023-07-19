@@ -469,3 +469,9 @@ h6, .h6{
     display: none;
   }
 }
+
+.container-max {max-width:100% !important}
+
+.footer .widget-link-list .widget-inner a:hover, .footer .widget-list .widget-inner a:hover {
+  color: #ffffe0 !important;
+}
