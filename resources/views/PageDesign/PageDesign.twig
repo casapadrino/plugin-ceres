@@ -27,7 +27,6 @@
 {% for styleTemplate in get_additional_styles() %}
 {% include styleTemplate.path ignore missing with styleTemplate.params %}
 {% endfor %}
-
     {% if assetName == 'ceres-checkout' %}
         {{ LayoutContainer.show("Ceres::Checkout.Styles") }}
     {% endif %}
@@ -37,7 +36,6 @@
 
     {{ LayoutContainer.show("Ceres::PageDesign.AfterOpeningHeadTag") }}
 
-    {{ get_consent_scripts(ceresConfig.global.blockCookies) }}
 </head>
 
 <body class="{{ bodyClasses | join(' ') }} {% if request.get('openBasketPreview') == 1 %} basket-open{% endif %}">
@@ -232,6 +230,8 @@
         document.body.classList.add("no-touch");
     }
 </script>
+
+{{ get_consent_scripts(ceresConfig.global.blockCookies) }}
 
 <script>
     window.App = JSON.parse(document.getElementById("app-data").innerText);
