@@ -1,22 +1,8 @@
 {% import "Ceres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
-
+{% spaceless %}
 {% set defaultFavicon = '/tpl/favicon_' ~ webstoreConfig.webstoreId ~ '.ico' %}
-<link rel="icon" type="img/ico" href="{{ webstoreConfig.faviconPath | default(ceresConfig.global.favicon) | default(defaultFavicon) }}">
-
 {% set canonicalUrl = services.url.getCanonicalURL() %}
 {% set languageUrls = services.url.getLanguageURLs() %}
-
-{% if canonicalUrl is not null %}
-    <link rel="canonical" href="{{ canonicalUrl  ~ services.url.getCanonicalQueryString() }}">
-{% endif %}
-
-{% if services.url.isCanonical() or request.get('env') == "testing" %}
-    {% for language, url in languageUrls %}
-        <link rel="alternate" hreflang="{{language}}" href="{{url}}"/>
-    {% endfor %}
-{% endif %}
-
-<style data-font="Custom-Font">
     {% set customFont =
         {
             regular: config('Ceres.custom-font-regular'),
@@ -25,7 +11,21 @@
             boldItalic: config('Ceres.custom-font-bold-italic')
         }
     %}
-
+{% set iconCSS = plugin_path("Ceres") ~ "/css/ceres-icons.css" %}
+{% set defaultCSS = plugin_path("Ceres") ~ "/css/" ~ assetName ~ ".css?v=" ~ buildHash %}
+{% set defaultSCSS = plugin_path("Ceres") ~ "/css/" ~ assetName ~ ".scss?v=" ~ buildHash %}
+{% endspaceless %}
+<link rel="icon" type="img/ico" href="{{ webstoreConfig.faviconPath | default(ceresConfig.global.favicon) | default(defaultFavicon) }}">
+{% if canonicalUrl is not null %}
+<link rel="canonical" href="{{ canonicalUrl  ~ services.url.getCanonicalQueryString() }}">
+{% endif %}
+{% if services.url.isCanonical() or request.get('env') == "testing" %}
+{% for language, url in languageUrls %}
+<link rel="alternate" hreflang="{{language}}" href="{{url}}"/>
+{% endfor %}
+{% endif %}
+<style data-font="Custom-Font">
+.icons-loading .fa { visibility: hidden !important; }
     {% if customFont.regular %}
     {{ add_asset(customFont.regular, 'font', 'preload', {'crossorigin': true}) }}
     @font-face {
@@ -62,36 +62,19 @@
         font-style: italic;
     }
     {% endif %}
-
-    {# FIX: do not display icons until fontawesome is loaded #}
-    .icons-loading .fa { visibility: hidden !important; }
 </style>
-
-{% set iconCSS = plugin_path("Ceres") ~ "/css/ceres-icons.css" %}
-{# asynchronously load icons.css #}
 <link rel="preload" href="{{ iconCSS }}" as="style" onload="this.onload=null;this.rel='stylesheet';">
-{# fallback for disabled javascript #}
 <noscript><link rel="stylesheet" href="{{ iconCSS }}"></noscript>
-
-{% set defaultCSS = plugin_path("Ceres") ~ "/css/" ~ assetName ~ ".css?v=" ~ buildHash %}
-{% set defaultSCSS = plugin_path("Ceres") ~ "/css/" ~ assetName ~ ".scss?v=" ~ buildHash %}
-
 {% if LayoutContainer.show("Ceres::Template.StyleOverwrite") | trim is empty %}
-    <link rel="stylesheet" href="{{ defaultCSS }}"{% if isShopBuilder %} data-sass-root="{{ plugin_path('Ceres') }}" data-sass-original="{{ defaultSCSS }}"{% endif %}>
+<link rel="stylesheet" href="{{ defaultCSS }}"{% if isShopBuilder %} data-sass-root="{{ plugin_path('Ceres') }}" data-sass-original="{{ defaultSCSS }}"{% endif %}>
 {% endif %}
-
 {% if isShopBuilder %}
-    <link rel="stylesheet" href="{{ plugin_path("Ceres") }}/css/ceres-shopbuilder.css?v={{ buildHash }}">
+<link rel="stylesheet" href="{{ plugin_path("Ceres") }}/css/ceres-shopbuilder.css?v={{ buildHash }}">
 {% endif %}
-
 <script>
 /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 !function(t){"use strict";t.loadCSS||(t.loadCSS=function(){});var e=loadCSS.relpreload={};if(e.support=function(){var e;try{e=t.document.createElement("link").relList.supports("preload")}catch(n){e=!1}return function(){return e}}(),e.bindMediaToggle=function(t){var e=t.media||"all";function n(){t.addEventListener?t.removeEventListener("load",n):t.attachEvent&&t.detachEvent("onload",n),t.setAttribute("onload",null),t.media=e}t.addEventListener?t.addEventListener("load",n):t.attachEvent&&t.attachEvent("onload",n),setTimeout(function(){t.rel="stylesheet",t.media="only x"}),setTimeout(n,3e3)},e.poly=function(){if(!e.support())for(var n=t.document.getElementsByTagName("link"),a=0;a<n.length;a++){var o=n[a];"preload"!==o.rel||"style"!==o.getAttribute("as")||o.getAttribute("data-loadcss")||(o.setAttribute("data-loadcss",!0),e.bindMediaToggle(o))}},!e.support()){e.poly();var n=t.setInterval(e.poly,500);t.addEventListener?t.addEventListener("load",function(){e.poly(),t.clearInterval(n)}):t.attachEvent&&t.attachEvent("onload",function(){e.poly(),t.clearInterval(n)})}"undefined"!=typeof exports?exports.loadCSS=loadCSS:t.loadCSS=loadCSS}("undefined"!=typeof global?global:this),function(){var t=function(){(!document.fonts||document.fonts.check("1em FontAwesome"))&&document.documentElement.classList.remove("icons-loading")};document.fonts&&(document.fonts.addEventListener("loadingdone",t),window.addEventListener("load",t)),t()}();
 </script>
-
 {{ LayoutContainer.show("Ceres::Template.StyleOverwrite") }}
-
-<!-- Extend the existing style with a template -->
 {{ LayoutContainer.show("Ceres::Template.Style") }}
-
 {{ get_shop_builder_styles() }}
