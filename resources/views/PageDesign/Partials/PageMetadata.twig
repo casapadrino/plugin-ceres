@@ -1,3 +1,4 @@
+{% spaceless %}
 {% set details = null %}
 {% if category is defined and category is not null %}
     {% set details = category.details[0] %}
@@ -34,7 +35,6 @@
     {% set image = details.imagePath | default(companyLogo) %}
 {% endif %}
 
-{% spaceless %}
 {% if block('title') is defined %}
     {% set title = block('title') %}
 {% elseif details is not null %}
