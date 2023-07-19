@@ -22,8 +22,10 @@
 <link rel="preload" as="style" href="{{ iconCSS }}">
 <link rel="preload" as="style" href="{{ defaultCSS }}">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-{% include getPartial('page-metadata') %}
 {% include getPartial('head') %}
+{% block PartialHead %}
+{% embed getPartial('page-metadata') %}{% endembed %}
+{% endblock %}
 
 {% for styleTemplate in get_additional_styles() %}
 {% include styleTemplate.path ignore missing with styleTemplate.params %}
