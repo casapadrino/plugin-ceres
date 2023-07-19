@@ -11359,6 +11359,10 @@ h6, .h6 {
   display: none;
 }
 
+.container-max {
+  max-width: 100% !important;
+}
+
 /**
 * Owl Carousel v2.2.0
 * Copyright 2013-2016 David Deutsch
