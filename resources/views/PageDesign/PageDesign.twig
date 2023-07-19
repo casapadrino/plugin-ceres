@@ -21,10 +21,8 @@
 <meta charset="utf-8">
 <link rel="preload" as="style" href="{{ defaultCSS }}">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+{% include getPartial('page-metadata') %}
 {% include getPartial('head') %}
-{% block PartialHead %}
-{% embed getPartial('page-metadata') %}{% endembed %}
-{% endblock %}
 
 {% for styleTemplate in get_additional_styles() %}
 {% include styleTemplate.path ignore missing with styleTemplate.params %}
@@ -321,12 +319,6 @@
 
 {{ get_filtered_tags() }}
 
-{{ get_shop_builder_scripts( "latest", ceresConfig.log.performanceLevel == 'live') }}
-
-{% if not services.template.shouldBeCached() %}
-    <input type="hidden" id="csrf-token" value="{{ csrf_token() }}">
-{% endif %}
-
-{% block PartialLast %}{% endblock %}
+{% include getPartial('last') %}
 </body>
 </html>
