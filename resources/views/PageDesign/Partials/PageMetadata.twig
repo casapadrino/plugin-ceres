@@ -74,3 +74,20 @@
 <meta property="og:type" content="article"/>
 <meta property="og:url" content="{{ url | trim }}"/>
 <meta property="og:image" content="{{ image | trim }}"/>
+
+<script type="application/ld+json">
+{% block schemaOrg %}
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "url": "{{ url | raw }}"
+    {% if services.template.isHome() %}
+    ,"potentialAction":{
+        "@type": "SearchAction",
+        "target": "{{ webstoreConfig.domainSsl ~ urls.search }}?query={search_term}",
+        "query-input": "required name=search_term"
+    }
+    {% endif %}
+}
+{% endblock %}
+</script>
