@@ -472,6 +472,10 @@ h6, .h6{
 
 .container-max {max-width:100% !important}
 
-.footer .widget-link-list .widget-inner a:hover, .footer .widget-list .widget-inner a:hover {
-  color: #ffffe0 !important;
+.footer .widget-link-list .widget-inner a, .footer .widget-list .widget-inner a {
+   margin-top:2px;margin-bottom:2px;padding-top:2px;padding-bottom:2px
+}
+
+.footer a:hover {
+   color: #ffd700 !important;
 }
