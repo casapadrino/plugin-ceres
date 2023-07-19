@@ -23,10 +23,12 @@
 <link rel="preload" as="style" href="{{ defaultCSS }}">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 {% include getPartial('page-metadata') %}
+{% include getPartial('head') %}
+
 {% for styleTemplate in get_additional_styles() %}
 {% include styleTemplate.path ignore missing with styleTemplate.params %}
 {% endfor %}
-{% include getPartial('head') %}
+
 {% if assetName == 'ceres-checkout' %}
 {{ LayoutContainer.show("Ceres::Checkout.Styles") }}
 {% endif %}
