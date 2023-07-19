@@ -11,7 +11,7 @@
     {% else %}
         {% set robotsValue = 'ALL' %}
     {% endif %}
-    {% embed getPartial('page-metadata2') %}
+    {% embed getPartial('page-metadata') %}
         {% block title          ItemName.get(itemData | itemName(webstoreConfig.urlTitleItemName - 1, ""), itemData.variation.bundleType) %}
         {% block description    itemData.texts.metaDescription %}
         {% block keywords       itemData.texts.keywords %}
@@ -73,6 +73,7 @@
 
 {% endblock %}
 
+{% embed getPartial('last') %}
 {% block schemaOrg %}
             {
                 "@context"      : "http://schema.org/",
@@ -173,3 +174,4 @@
                 }
             }
 {% endblock %}
+{% endembed %}
