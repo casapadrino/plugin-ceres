@@ -232,14 +232,16 @@
     }
 </script>
 
-{{ get_consent_scripts(ceresConfig.global.blockCookies) }}
-
 <script>
     window.App = JSON.parse(document.getElementById("app-data").innerText);
     window.__loadPluginChunk = function(source) {
         return source += "?v={{ buildHash }}";
     };
 </script>
+
+{{ get_consent_scripts(ceresConfig.global.blockCookies) }}
+
+{% include getPartial('last') %}
 
 {{ Loader.include_components() }}
 
@@ -275,8 +277,6 @@
 {% if isItem %}
     {{ LayoutContainer.show("Ceres::SingleItem.AfterScriptsLoaded") }}
 {% endif %}
-
-{% include getPartial('last') %}
 
 <!-- SSR:on() -->
 <script>
