@@ -5,7 +5,7 @@
 {% elseif details is not null %}
     {% set robots = services.SEO.getRobotsInformation() %}
 {% endif %}
-{% spaceless %}
+{% endspaceless %}
 <meta name="robots" content="{% if forceNoIndex %}NOINDEX{% else %}{{ robots }}{% endif %}">
 
 <script type="application/ld+json">
